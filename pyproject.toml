@@ -1,0 +1,24 @@
+[project]
+name = "hw-8"
+version = "0.1.0"
+description = "Home work 8"
+authors = [
+    {name = "ViktorBond7",email = "141341341+ViktorBond7@users.noreply.github.com"}
+]
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi[standard] (>=0.136.1,<0.137.0)",
+    "sqlalchemy (>=2.0.49,<3.0.0)",
+    "alembic (>=1.18.4,<2.0.0)",
+    "psycopg[binary,pool] (>=3.3.3,<4.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "black (>=26.3.1,<27.0.0)"
+]

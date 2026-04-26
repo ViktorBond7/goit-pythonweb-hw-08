@@ -1,0 +1,1 @@
+DATABASE_CONNECT_URL = "postgresql+psycopg://admin:password@localhost:5433/db_contacts"
