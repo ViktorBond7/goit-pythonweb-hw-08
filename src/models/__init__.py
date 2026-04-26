@@ -1,2 +1,1 @@
-
 from .contact import Contact

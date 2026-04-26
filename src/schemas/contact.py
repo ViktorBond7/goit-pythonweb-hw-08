@@ -2,6 +2,7 @@ from pydantic import BaseModel, ConfigDict
 from datetime import date
 from typing import Optional
 
+
 class ContactRequest(BaseModel):
     first_name: str
     last_name: str
@@ -18,15 +19,13 @@ class ContactUpdateRequest(BaseModel):
     phone_number: Optional[str] = None
     birthday: Optional[date] = None
     additional_data: Optional[str] = None
-    
-    model_config = ConfigDict(from_attributes=True)
 
-  
+    model_config = ConfigDict(from_attributes=True)
 
 
 class ContactResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
-    
+
     id: int
     first_name: str
     last_name: str
