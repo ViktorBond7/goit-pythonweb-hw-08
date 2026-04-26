@@ -17,3 +17,6 @@ def create_contact(session: Session, contact: Contact) -> Contact:
 
 def get_contact_by_id(session: Session, contact_id: int) -> Contact | None:
     return session.query(Contact).filter(Contact.id == contact_id).first()
+
+def get_contact_by_email(session: Session, email: str) -> Contact | None:
+    return session.query(Contact).filter(Contact.email == email).first()
