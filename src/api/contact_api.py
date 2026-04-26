@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from src.schemas.contact import ContactResponse, ContactRequest
+from src.schemas.contact import ContactResponse, ContactRequest, ContactUpdateRequest
 from src.db.sesion import open_session
 from src.services import contact_service
 
@@ -24,6 +24,10 @@ def create_contact(contact: ContactRequest, session: Session = Depends(open_sess
 @router.get("/contacts/{contact_id}", response_model=ContactResponse)
 def get_contact_by_id(contact_id: int, session: Session = Depends(open_session)):
     contact = contact_service.get_contact_by_id(session, contact_id)
-    if not contact:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Contact not found")
     return ContactResponse.model_validate(contact)
+
+@router.patch("/contacts/{contact_id}", response_model=ContactResponse)
+def update_contact(contact_id: int, contact: ContactUpdateRequest, session: Session = Depends(open_session)):
+    db_contact = contact_service.get_contact_by_id(session, contact_id)
+    updated_contact = contact_service.update_contact(session, db_contact, contact)
+    return ContactResponse.model_validate(updated_contact)

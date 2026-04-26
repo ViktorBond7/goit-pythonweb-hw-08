@@ -20,3 +20,9 @@ def get_contact_by_id(session: Session, contact_id: int) -> Contact | None:
 
 def get_contact_by_email(session: Session, email: str) -> Contact | None:
     return session.query(Contact).filter(Contact.email == email).first()
+
+def update_contact(session: Session, db_contact: Contact) -> Contact:
+    session.add(db_contact)
+    session.commit()
+    session.refresh(db_contact)
+    return db_contact
